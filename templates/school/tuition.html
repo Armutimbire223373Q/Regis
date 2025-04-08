@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tuition & Fees - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Tuition & Fees</h1>
+        <p class="lead text-muted">Investing in your child's future</p>
+    </header>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Tuition Breakdown</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Grade Level</th>
+                                    <th>Description</th>
+                                    <th>Annual Tuition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fee in fees %}
+                                <tr>
+                                    <td>{{ fee.get_grade_display }}</td>
+                                    <td>{{ fee.description }}</td>
+                                    <td>${{ fee.amount }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No tuition information available.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h2 class="h4 mb-0">Scholarships & Financial Aid</h2>
+                </div>
+                <div class="card-body">
+                    {% if scholarships %}
+                    <div class="row">
+                        {% for scholarship in scholarships %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ scholarship.name }}</h5>
+                                    <p class="card-text">{{ scholarship.description }}</p>
+                                    <p class="text-success fw-bold">Amount: ${{ scholarship.amount }}</p>
+                                    <p class="text-danger">Deadline: {{ scholarship.deadline|date:"F d, Y" }}</p>
+                                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#scholarshipModal{{ scholarship.id }}">
+                                        View Requirements
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Scholarship Modal -->
+                        <div class="modal fade" id="scholarshipModal{{ scholarship.id }}" tabindex="-1" aria-labelledby="scholarshipModalLabel{{ scholarship.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="scholarshipModalLabel{{ scholarship.id }}">{{ scholarship.name }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h6 class="text-success mb-3">Amount: ${{ scholarship.amount }}</h6>
+                                        <p class="text-danger mb-3">Deadline: {{ scholarship.deadline|date:"F d, Y" }}</p>
+                                        <h6>Requirements:</h6>
+                                        <p>{{ scholarship.requirements }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>No scholarships currently available.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h2 class="h4 mb-0">Payment Information</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Payment Options</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Annual Payment (5% discount)</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Semi-Annual Payment</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Quarterly Payment</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Monthly Payment Plan</li>
+                    </ul>
+                    
+                    <h5 class="card-title mt-4">Additional Fees</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Registration Fee: $500</li>
+                        <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Technology Fee: $200/year</li>
+                        <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Activity Fee: $300/year</li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'school:payment' %}" class="btn btn-primary w-100">
+                            <i class="fas fa-credit-card me-2"></i>Make a Payment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h2 class="h4 mb-0">Need Help?</h2>
+                </div>
+                <div class="card-body">
+                    <p>Our financial aid office is here to help you understand the costs and available options.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>financialaid@regisbridge.edu</li>
+                        <li><i class="fas fa-clock me-2"></i>Monday - Friday, 9:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    
+    .table th {
+        background-color: #f8f9fa;
+    }
+</style>
+{% endblock %} 

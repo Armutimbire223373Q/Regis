@@ -1,0 +1,21 @@
+{
+    "name": "Regisbridge Private School",
+    "short_name": "Regisbridge",
+    "description": "A Place of Excellence offering quality education and comprehensive development for students.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#6f42c1",
+    "icons": [
+        {
+            "src": "images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+} 

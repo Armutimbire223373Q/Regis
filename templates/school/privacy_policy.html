@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Privacy Policy - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Privacy Policy</h1>
+        <p class="lead text-muted">How we protect and handle your information</p>
+    </header>
+    
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="privacy-content">
+                        {% if object %}
+                        <div class="last-updated mb-4">
+                            <small class="text-muted">Last Updated: {{ object.last_updated|date:"F d, Y" }}</small>
+                        </div>
+                        {{ object.content|safe }}
+                        {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>Privacy policy content is currently being updated.
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mt-5">
+                        <h4>Contact Us</h4>
+                        <p>If you have any questions about our privacy policy, please contact us:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-envelope me-2"></i>
+                                <a href="mailto:privacy@regisbridge.edu">privacy@regisbridge.edu</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-phone me-2"></i>+1 (555) 123-4567
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt me-2"></i>123 School Street, Harare, Zimbabwe
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary me-2">
+                    <i class="fas fa-download me-2"></i>Download Privacy Policy
+                </a>
+                <a href="#" class="btn btn-outline-secondary">
+                    <i class="fas fa-print me-2"></i>Print Policy
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .privacy-content {
+        line-height: 1.8;
+    }
+    
+    .privacy-content h2 {
+        color: #0d6efd;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .privacy-content h3 {
+        color: #6c757d;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .privacy-content p {
+        margin-bottom: 1.2rem;
+    }
+    
+    .privacy-content ul {
+        margin-bottom: 1.5rem;
+    }
+    
+    .privacy-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .card {
+        border: none;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    
+    .last-updated {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %} 

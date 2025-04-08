@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- Header Image Section -->
+<section class="header-image position-relative">
+    <div class="header-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-50 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">Blog</h1>
+                <p class="lead mb-0 animate__animated animate__fadeInUp animate__delay-1s">Latest News and Updates</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Post Section -->
+<section class="featured-post py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 shadow-sm">
+                    <img src="{% static 'images/blog/featured.jpg' %}" class="card-img-top" alt="Featured Post">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="post-meta mb-3">
+                            <span class="text-muted"><i class="far fa-calendar me-2"></i>March 15, 2024</span>
+                            <span class="text-muted ms-3"><i class="far fa-folder me-2"></i>School News</span>
+                        </div>
+                        <h2 class="card-title h3 mb-3">School Achieves Outstanding Academic Results</h2>
+                        <p class="card-text">We are proud to announce that our students have achieved exceptional results in their recent examinations, with 95% of students achieving above-average scores...</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Section -->
+<section class="blog-posts py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="row g-4">
+                    {% for i in "123456"|make_list %}
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm hover-card">
+                            <img src="{% static 'images/blog/post-'|add:i|add:'.jpg' %}" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <div class="post-meta mb-2">
+                                    <span class="text-muted"><i class="far fa-calendar me-2"></i>March {{ i }}, 2024</span>
+                                    <span class="text-muted ms-3"><i class="far fa-folder me-2"></i>Category</span>
+                                </div>
+                                <h3 class="card-title h4 mb-3">Blog Post Title {{ i }}</h3>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <a href="#" class="btn btn-link p-0">Read More <i class="fas fa-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Pagination -->
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Search Widget -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Search</h3>
+                        <form class="search-form">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search posts...">
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Categories Widget -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Categories</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between align-items-center">
+                                    <span>School News</span>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between align-items-center">
+                                    <span>Academic</span>
+                                    <span class="badge bg-primary rounded-pill">8</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between align-items-center">
+                                    <span>Events</span>
+                                    <span class="badge bg-primary rounded-pill">6</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between align-items-center">
+                                    <span>Student Life</span>
+                                    <span class="badge bg-primary rounded-pill">4</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Recent Posts Widget -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Recent Posts</h3>
+                        <div class="recent-posts">
+                            {% for i in "123"|make_list %}
+                            <div class="recent-post-item mb-3">
+                                <div class="row g-2">
+                                    <div class="col-4">
+                                        <img src="{% static 'images/blog/recent-'|add:i|add:'.jpg' %}" class="img-fluid rounded" alt="Recent Post">
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 class="h6 mb-1"><a href="#" class="text-decoration-none">Recent Post Title {{ i }}</a></h4>
+                                        <small class="text-muted">March {{ i }}, 2024</small>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tags Widget -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Tags</h3>
+                        <div class="tags">
+                            <a href="#" class="tag">Education</a>
+                            <a href="#" class="tag">School</a>
+                            <a href="#" class="tag">Students</a>
+                            <a href="#" class="tag">Learning</a>
+                            <a href="#" class="tag">Academic</a>
+                            <a href="#" class="tag">Events</a>
+                            <a href="#" class="tag">Sports</a>
+                            <a href="#" class="tag">Arts</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Widget -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Newsletter</h3>
+                        <p class="mb-3">Subscribe to our newsletter for the latest updates and news.</p>
+                        <form class="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Your email address" required>
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .header-image {
+        background-image: url('{% static "images/blog-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .min-vh-50 {
+        min-height: 50vh;
+    }
+    
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .post-meta {
+        font-size: 0.875rem;
+    }
+    
+    .recent-post-item img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+    }
+    
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(var(--primary-rgb), 0.1);
+        color: var(--primary-color);
+        border-radius: 1rem;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+    
+    .tag:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Add your newsletter subscription logic here
+        // You can use fetch or AJAX to submit the form data
+        
+        // For now, just show a success message
+        alert('Thank you for subscribing to our newsletter!');
+    });
+</script>
+{% endblock %} 

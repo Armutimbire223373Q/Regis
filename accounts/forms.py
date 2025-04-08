@@ -1,63 +1,61 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import get_user_model
-from .models import CustomUser
-from students.models import StudentProfile
-from teachers.models import TeacherProfile
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.utils.translation import gettext_lazy as _
 
-User = get_user_model()
+from .models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
+    """Form for creating new users."""
+    
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = ('username', 'email', 'role')
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['email'].required = True
-        self.fields['role'].widget = forms.Select(choices=CustomUser.ROLE_CHOICES)
-
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    user_type = forms.ChoiceField(choices=[('student', 'Student'), ('teacher', 'Teacher')])
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'user_type', 'password1', 'password2')
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
+        fields = ('email', 'first_name', 'last_name', 'user_type', 
+                 'date_of_birth', 'phone_number')
         
-        if commit:
-            user.save()
-            user_type = self.cleaned_data['user_type']
-            
-            if user_type == 'student':
-                StudentProfile.objects.create(
-                    user=user,
-                    student_id=f'S{user.id:06d}'
-                )
-            else:
-                TeacherProfile.objects.create(
-                    user=user,
-                    teacher_id=f'T{user.id:06d}'
-                )
-        
-        return user
+    def clean_email(self):
+        """Validate email is unique."""
+        email = self.cleaned_data['email']
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError(_('This email is already registered.'))
+        return email
 
-class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
-class ProfileForm(forms.ModelForm):
+class CustomUserChangeForm(UserChangeForm):
+    """Form for updating users."""
+    
+    password = None  # Remove password field from the form
+    
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'role')
+        fields = ('email', 'first_name', 'last_name', 'date_of_birth',
+                 'phone_number', 'address', 'bio', 'profile_picture')
         widgets = {
-            'role': forms.Select(choices=CustomUser.ROLE_CHOICES)
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
         }
+
+
+class UserProfileForm(forms.ModelForm):
+    """Form for users to update their profile."""
+    
+    class Meta:
+        model = CustomUser
+        fields = ('first_name', 'last_name', 'phone_number', 'address',
+                 'bio', 'profile_picture')
+        widgets = {
+            'bio': forms.Textarea(attrs={'rows': 4}),
+        }
+
+
+class EmailVerificationForm(forms.Form):
+    """Form for email verification code."""
+    
+    code = forms.CharField(
+        label=_('Verification Code'),
+        max_length=6,
+        min_length=6,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Enter 6-digit code')
+        })
+    )

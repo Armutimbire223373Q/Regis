@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Regisbridge Private School - A Place of Excellence{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero position-relative">
+    <div class="hero-overlay"></div>
+    <img src="{% static 'images/home.jpg' %}" alt="Campus Life at Regisbridge" class="hero-image w-100" loading="lazy">
+    <div class="container position-relative">
+        <div class="row min-vh-100 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInUp">
+                    Welcome to Regisbridge Private School
+                </h1>
+                <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+                    A Place of Excellence
+                </p>
+                <a href="{% url 'about' %}" class="btn btn-primary btn-lg animate__animated animate__fadeInUp animate__delay-2s">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Info Section -->
+<section class="quick-info py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title mb-4">Excellence in Education</h2>
+                <p class="lead text-muted">
+                    At Regisbridge Private School, we nurture young minds to become tomorrow's leaders through academic excellence, character development, and innovative learning approaches.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- Academic Excellence -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Academic Excellence</h3>
+                        <p class="text-muted mb-4">
+                            Comprehensive curriculum focused on developing critical thinking and problem-solving skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- State-of-the-art Facilities -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-school fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Modern Facilities</h3>
+                        <p class="text-muted mb-4">
+                            State-of-the-art classrooms, laboratories, and sports facilities for holistic development.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diverse Extracurriculars -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-palette fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Diverse Activities</h3>
+                        <p class="text-muted mb-4">
+                            Wide range of extracurricular activities including sports, arts, and cultural programs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'admissions:apply' %}" class="btn btn-primary btn-lg">Apply Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News & Events -->
+<section class="news-events py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Latest News & Events</h2>
+        <div class="row g-4">
+            <!-- Event 1 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/event1.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="event-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 15, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Annual Sports Day</h3>
+                        <p class="text-muted">Join us for our annual sports day celebration featuring various athletic events and competitions.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event 2 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/event2.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="event-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 20, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Science Fair</h3>
+                        <p class="text-muted">Discover innovative projects at our annual science fair showcasing student creativity.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event 3 -->
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/event3.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="event-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 25, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Parent-Teacher Meeting</h3>
+                        <p class="text-muted">Schedule meetings with teachers to discuss your child's academic progress.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center text-white">
+                <h2 class="mb-4">Begin Your Journey with Regisbridge</h2>
+                <p class="lead mb-4">Join our community of learners and discover the endless possibilities that await.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'admissions:apply' %}" class="btn btn-primary btn-lg">Apply Now</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">Book a Tour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero {
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .feature-icon {
+        width: 5rem;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--primary-rgb), 0.1);
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    
+    .hover-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .event-date {
+        font-size: 0.9rem;
+    }
+    
+    .cta {
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static "images/cta-bg.jpg" %}');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    @media (max-width: 768px) {
+        .hero {
+            height: 70vh;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+{% endblock %} 

@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Student Life - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- Header Image Section -->
+<section class="header-image position-relative">
+    <div class="header-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-50 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">Student Life</h1>
+                <p class="lead mb-0 animate__animated animate__fadeInUp animate__delay-1s">Beyond the Classroom</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Extracurricular Activities Section -->
+<section class="activities py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Extracurricular Activities</h2>
+        <div class="row g-4">
+            <!-- Sports & Athletics -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/sports.jpg' %}" class="card-img-top" alt="Sports">
+                    <div class="card-body">
+                        <h3 class="h4 mb-3">Sports & Athletics</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-running text-primary me-2"></i>Football</li>
+                            <li class="mb-2"><i class="fas fa-basketball-ball text-primary me-2"></i>Basketball</li>
+                            <li class="mb-2"><i class="fas fa-table-tennis text-primary me-2"></i>Tennis</li>
+                            <li class="mb-2"><i class="fas fa-swimming-pool text-primary me-2"></i>Swimming</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Arts & Culture -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/arts.jpg' %}" class="card-img-top" alt="Arts">
+                    <div class="card-body">
+                        <h3 class="h4 mb-3">Arts & Culture</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-theater-masks text-primary me-2"></i>Drama Club</li>
+                            <li class="mb-2"><i class="fas fa-music text-primary me-2"></i>Music Ensemble</li>
+                            <li class="mb-2"><i class="fas fa-palette text-primary me-2"></i>Art Studio</li>
+                            <li class="mb-2"><i class="fas fa-drum text-primary me-2"></i>Dance Team</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Clubs & Organizations -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <img src="{% static 'images/clubs.jpg' %}" class="card-img-top" alt="Clubs">
+                    <div class="card-body">
+                        <h3 class="h4 mb-3">Clubs & Organizations</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-robot text-primary me-2"></i>Robotics Club</li>
+                            <li class="mb-2"><i class="fas fa-leaf text-primary me-2"></i>Environmental Club</li>
+                            <li class="mb-2"><i class="fas fa-book text-primary me-2"></i>Debate Team</li>
+                            <li class="mb-2"><i class="fas fa-globe text-primary me-2"></i>Model UN</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Campus Life Section -->
+<section class="campus-life py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Campus Life</h2>
+        <div class="row g-4">
+            <!-- Facilities -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h4 mb-4">Facilities</h3>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="facility-item">
+                                    <i class="fas fa-utensils fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Cafeteria</h4>
+                                    <p class="mb-0">Modern dining facility serving healthy meals</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="facility-item">
+                                    <i class="fas fa-book-reader fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Library</h4>
+                                    <p class="mb-0">Extensive collection of books and digital resources</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="facility-item">
+                                    <i class="fas fa-flask fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Laboratories</h4>
+                                    <p class="mb-0">State-of-the-art science and computer labs</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="facility-item">
+                                    <i class="fas fa-dumbbell fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Sports Complex</h4>
+                                    <p class="mb-0">Multiple sports fields and indoor facilities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Student Support -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="h4 mb-4">Student Support Services</h3>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="support-item">
+                                    <i class="fas fa-comments fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Counseling</h4>
+                                    <p class="mb-0">Professional guidance and support services</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="support-item">
+                                    <i class="fas fa-heartbeat fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Health Center</h4>
+                                    <p class="mb-0">On-campus medical care and first aid</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="support-item">
+                                    <i class="fas fa-laptop fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">IT Support</h4>
+                                    <p class="mb-0">Technical assistance and computer access</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="support-item">
+                                    <i class="fas fa-bus fa-2x text-primary mb-3"></i>
+                                    <h4 class="h5">Transportation</h4>
+                                    <p class="mb-0">School bus service and parking facilities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events & Traditions Section -->
+<section class="events py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Events & Traditions</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="event-icon mb-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Annual Graduation</h3>
+                        <p class="mb-0">Celebrating student achievements and future endeavors</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="event-icon mb-3">
+                            <i class="fas fa-theater-masks fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Cultural Festival</h3>
+                        <p class="mb-0">Showcasing diverse talents and cultural heritage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="event-icon mb-3">
+                            <i class="fas fa-trophy fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Sports Day</h3>
+                        <p class="mb-0">Annual athletic competitions and team spirit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Student Gallery Section -->
+<section class="gallery py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Student Gallery</h2>
+        <div class="row g-4">
+            {% for i in "123456"|make_list %}
+            <div class="col-md-4">
+                <div class="gallery-item">
+                    <img src="{% static 'images/gallery-'|add:i|add:'.jpg' %}" class="img-fluid rounded" alt="Student Life">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Join Our Community</h2>
+                <p class="lead mb-4">Experience the vibrant student life at Regisbridge Private School</p>
+                <a href="{% url 'admissions:index' %}" class="btn btn-primary btn-lg">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .header-image {
+        background-image: url('{% static "images/student-life-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .min-vh-50 {
+        min-height: 50vh;
+    }
+    
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .facility-item,
+    .support-item {
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        background: rgba(var(--primary-rgb), 0.05);
+        transition: transform 0.3s ease;
+    }
+    
+    .facility-item:hover,
+    .support-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .event-icon {
+        width: 5rem;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--primary-rgb), 0.1);
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+    
+    .gallery-item img {
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %} 

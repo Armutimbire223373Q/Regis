@@ -1,0 +1,55 @@
+{% load static %}
+
+<div class="card mb-4">
+    <div class="card-header">Search Posts</div>
+    <div class="card-body">
+        <form method="get" action="{% url 'blog:post_search' %}" class="search-form">
+            <div class="mb-3">
+                <input type="text" name="query" class="form-control" placeholder="Search posts..." value="{{ request.GET.query }}">
+            </div>
+            <div class="mb-3">
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"i" %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <select name="date" class="form-select">
+                    <option value="">Any Time</option>
+                    <option value="today" {% if request.GET.date == 'today' %}selected{% endif %}>Today</option>
+                    <option value="week" {% if request.GET.date == 'week' %}selected{% endif %}>This Week</option>
+                    <option value="month" {% if request.GET.date == 'month' %}selected{% endif %}>This Month</option>
+                    <option value="year" {% if request.GET.date == 'year' %}selected{% endif %}>This Year</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-search me-2"></i>Search
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .search-form .form-control,
+    .search-form .form-select {
+        border-radius: 0.5rem;
+        border: 1px solid #dee2e6;
+        padding: 0.75rem;
+    }
+    
+    .search-form .form-control:focus,
+    .search-form .form-select:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    .search-form .btn-primary {
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-weight: 500;
+    }
+</style> 

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="about-hero position-relative py-5">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <h1 class="display-4 fw-bold text-center mb-4 text-white animate__animated animate__fadeInUp">About Regisbridge</h1>
+        <p class="lead text-center text-white animate__animated animate__fadeInUp animate__delay-1s">{{ about_page.content }}</p>
+    </div>
+</section>
+
+<!-- Add CSS -->
+<style>
+    .about-hero {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "images/about-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .about-hero {
+            min-height: 70vh;
+        }
+    }
+</style>
+
+<!-- Mission & Vision Section -->
+<section class="mission-vision py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title h4">Our Mission</h2>
+                        <p class="card-text">{{ about_page.mission_statement }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title h4">Our Vision</h2>
+                        <p class="card-text">{{ about_page.vision_statement }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Values</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        {{ about_page.values|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- History Section -->
+<section class="history py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our History</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        {{ about_page.history|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Team Section -->
+<section class="leadership py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Leadership Team</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{% static 'images/event1.67e47a67109c.jpg' %}" class="card-img-top" alt="Principal">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Dr. Sarah Johnson</h3>
+                        <p class="card-text">Principal</p>
+                        <p class="card-text">Ph.D. in Education with over 20 years of experience in school leadership.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{% static 'images/event2.67e47a67109c.jpg' %}" class="card-img-top" alt="Vice Principal">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Mr. David Chen</h3>
+                        <p class="card-text">Vice Principal</p>
+                        <p class="card-text">M.Ed. in Educational Leadership with expertise in curriculum development.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="{% static 'images/event3.67e47a67109c.jpg' %}" class="card-img-top" alt="Academic Director">
+                    <div class="card-body">
+                        <h3 class="card-title h5">Ms. Emily Rodriguez</h3>
+                        <p class="card-text">Academic Director</p>
+                        <p class="card-text">M.A. in Curriculum and Instruction with focus on innovative teaching methods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

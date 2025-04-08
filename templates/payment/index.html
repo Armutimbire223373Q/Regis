@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Online Payments - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- Header Image Section -->
+<section class="header-image position-relative">
+    <div class="header-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-50 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">Online Payments</h1>
+                <p class="lead mb-0 animate__animated animate__fadeInUp animate__delay-1s">Secure Payment Processing</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Options Section -->
+<section class="payment-options py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Payment Methods</h2>
+        <div class="row g-4">
+            <!-- Credit/Debit Card -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="payment-icon mb-3">
+                            <i class="fas fa-credit-card fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Credit/Debit Card</h3>
+                        <p class="mb-4">Pay securely with your credit or debit card</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cardPaymentModal">
+                            Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bank Transfer -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="payment-icon mb-3">
+                            <i class="fas fa-university fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Bank Transfer</h3>
+                        <p class="mb-4">Transfer directly from your bank account</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bankTransferModal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Digital Wallet -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <div class="payment-icon mb-3">
+                            <i class="fas fa-wallet fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Digital Wallet</h3>
+                        <p class="mb-4">Pay using popular digital wallets</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#digitalWalletModal">
+                            Choose Wallet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fee Structure Section -->
+<section class="fee-structure py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Fee Structure</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Grade Level</th>
+                                        <th>Tuition Fee</th>
+                                        <th>Other Fees</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Primary School (Grades 1-5)</td>
+                                        <td>$5,000</td>
+                                        <td>$500</td>
+                                        <td>$5,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Middle School (Grades 6-8)</td>
+                                        <td>$6,000</td>
+                                        <td>$600</td>
+                                        <td>$6,600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High School (Grades 9-12)</td>
+                                        <td>$7,000</td>
+                                        <td>$700</td>
+                                        <td>$7,700</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment History Section -->
+<section class="payment-history py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Payment History</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mar 15, 2024</td>
+                                        <td>Tuition Fee - Q1</td>
+                                        <td>$1,375</td>
+                                        <td><span class="badge bg-success">Paid</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-download me-1"></i>Receipt
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feb 15, 2024</td>
+                                        <td>Tuition Fee - Q4</td>
+                                        <td>$1,375</td>
+                                        <td><span class="badge bg-success">Paid</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-download me-1"></i>Receipt
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jan 15, 2024</td>
+                                        <td>Tuition Fee - Q3</td>
+                                        <td>$1,375</td>
+                                        <td><span class="badge bg-success">Paid</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-download me-1"></i>Receipt
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Modals -->
+<!-- Card Payment Modal -->
+<div class="modal fade" id="cardPaymentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Card Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="cardPaymentForm">
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholderName" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bank Transfer Modal -->
+<div class="modal fade" id="bankTransferModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bank Transfer Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="bank-details">
+                    <p><strong>Bank Name:</strong> Example Bank</p>
+                    <p><strong>Account Name:</strong> Regisbridge Private School</p>
+                    <p><strong>Account Number:</strong> 1234567890</p>
+                    <p><strong>Routing Number:</strong> 987654321</p>
+                    <p><strong>Swift Code:</strong> EXAMPLEBANK</p>
+                </div>
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Please include your student ID as the reference when making the transfer.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Digital Wallet Modal -->
+<div class="modal fade" id="digitalWalletModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Choose Digital Wallet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-3">
+                    <button class="btn btn-outline-primary">
+                        <i class="fab fa-paypal me-2"></i>PayPal
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i class="fab fa-google-pay me-2"></i>Google Pay
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i class="fab fa-apple-pay me-2"></i>Apple Pay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .header-image {
+        background-image: url('{% static "images/payment-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .min-vh-50 {
+        min-height: 50vh;
+    }
+    
+    .payment-icon {
+        width: 5rem;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--primary-rgb), 0.1);
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    
+    .table td {
+        vertical-align: middle;
+    }
+    
+    .bank-details p {
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Card number formatting
+    document.getElementById('cardNumber').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        let formattedValue = '';
+        for(let i = 0; i < value.length; i++) {
+            if(i > 0 && i % 4 === 0) {
+                formattedValue += ' ';
+            }
+            formattedValue += value[i];
+        }
+        e.target.value = formattedValue;
+    });
+    
+    // Expiry date formatting
+    document.getElementById('expiryDate').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if(value.length >= 2) {
+            value = value.slice(0,2) + '/' + value.slice(2,4);
+        }
+        e.target.value = value;
+    });
+    
+    // CVV formatting
+    document.getElementById('cvv').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0,3);
+    });
+    
+    // Card payment form submission
+    document.getElementById('cardPaymentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Add your payment processing logic here
+        // You can use a payment gateway API
+        
+        // For now, just show a success message
+        alert('Payment processed successfully!');
+        $('#cardPaymentModal').modal('hide');
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Curriculum - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<section class="page-header bg-light py-5">
+    <div class="container">
+        <h1 class="section-title text-center">Our Curriculum</h1>
+        <p class="lead text-center text-muted">Comprehensive education designed for excellence</p>
+    </div>
+</section>
+
+<section class="curriculum-content py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h2 class="h3 mb-4">Academic Excellence</h2>
+                        <p>Our curriculum is designed to provide students with a solid foundation in core subjects while encouraging critical thinking and creativity.</p>
+                        <p>We follow a comprehensive approach that includes:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Mathematics and Sciences</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Language Arts and Literature</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Social Studies and History</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Physical Education and Health</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Arts and Music</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="h3 mb-4">Teaching Methodology</h2>
+                        <p>Our teachers employ a variety of teaching methods to engage students and promote active learning:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Project-based learning</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Collaborative group work</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Technology integration</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Experiential learning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Join Our Academic Excellence</h2>
+                <p class="lead mb-4">Experience our comprehensive curriculum designed for your child's success</p>
+                <a href="{% url 'admissions:index' %}" class="btn btn-primary btn-lg">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

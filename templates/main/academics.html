@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Academics - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- Academics Hero Section -->
+<section class="academics-hero position-relative py-5">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <h1 class="display-4 fw-bold text-center mb-4 text-white animate__animated animate__fadeInUp">Academic Excellence</h1>
+        <p class="lead text-center text-white animate__animated animate__fadeInUp animate__delay-1s">{{ academics_page.content }}</p>
+    </div>
+</section>
+
+<!-- Add CSS -->
+<style>
+    .academics-hero {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "images/student-life-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .academics-hero {
+            min-height: 70vh;
+        }
+    }
+</style>
+
+<!-- Programs Overview Section -->
+<section class="programs-overview py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Academic Programs</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        {{ academics_page.programs_overview|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Curriculum Overview Section -->
+<section class="curriculum-overview py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Curriculum Overview</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        {{ academics_page.curriculum_overview|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Faculty Highlight Section -->
+<section class="faculty-highlight py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Faculty</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        {{ academics_page.faculty_highlight|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Academic Support Section -->
+<section class="academic-support py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Academic Support</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-book-reader fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h5">Learning Center</h3>
+                        <p class="card-text">Dedicated support for students needing additional help in their studies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-laptop fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h5">Technology Integration</h3>
+                        <p class="card-text">State-of-the-art technology to enhance learning experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h5">University Counseling</h3>
+                        <p class="card-text">Comprehensive guidance for university applications and career planning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

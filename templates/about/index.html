@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<!-- Header Image Section -->
+<section class="header-image position-relative">
+    <div class="header-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-50 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">About Us</h1>
+                <p class="lead mb-0 animate__animated animate__fadeInUp animate__delay-1s">Discover Our Story and Mission</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="mission-vision py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body">
+                        <h2 class="h3 mb-4">Our Mission</h2>
+                        <p class="mb-0">To provide exceptional education that nurtures intellectual curiosity, fosters creativity, and develops well-rounded individuals who are prepared to make meaningful contributions to society.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body">
+                        <h2 class="h3 mb-4">Our Vision</h2>
+                        <p class="mb-0">To be a leading institution that sets the standard for excellence in education, producing graduates who are innovative, ethical, and globally competitive.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- History Section -->
+<section class="history py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Our History</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="h4">2020</h3>
+                            <p>Celebrated our 25th anniversary with expanded facilities and programs.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="h4">2015</h3>
+                            <p>Introduced new STEM programs and state-of-the-art laboratories.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="h4">2010</h3>
+                            <p>Expanded our campus with new sports facilities and arts center.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="h4">1995</h3>
+                            <p>Founded with a vision to provide quality education.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Team Section -->
+<section class="leadership py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Leadership Team</h2>
+        <div class="row g-4">
+            {% for member in leadership_team %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" class="card-img-top" alt="{{ member.name }}">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-2">{{ member.name }}</h3>
+                        <p class="text-muted mb-3">{{ member.position }}</p>
+                        <p class="card-text">{{ member.bio|truncatewords:30 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- School Achievements Section -->
+<section class="achievements py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">School Achievements</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-trophy fa-3x text-primary mb-3"></i>
+                        <h3 class="h4 mb-3">Academic Excellence</h3>
+                        <ul class="list-unstyled">
+                            <li>100% University Acceptance Rate</li>
+                            <li>Top 10% National Exam Results</li>
+                            <li>International Award Winners</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                        <h3 class="h4 mb-3">Sports Achievements</h3>
+                        <ul class="list-unstyled">
+                            <li>National Champions in Multiple Sports</li>
+                            <li>International Sports Competitions</li>
+                            <li>Sports Excellence Awards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                        <h3 class="h4 mb-3">Cultural Achievements</h3>
+                        <ul class="list-unstyled">
+                            <li>Arts & Music Festival Winners</li>
+                            <li>Drama & Theater Excellence</li>
+                            <li>Community Service Awards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 text-center text-lg-start">
+                <h2 class="mb-3">Ready to Join Our Community?</h2>
+                <p class="lead mb-0">Take the first step towards excellence in education.</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end mt-4 mt-lg-0">
+                <a href="{% url 'admissions:index' %}" class="btn btn-primary btn-lg">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .header-image {
+        background-image: url('{% static "images/about-header.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+    }
+    
+    .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .min-vh-50 {
+        min-height: 50vh;
+    }
+    
+    .timeline {
+        position: relative;
+        padding: 2rem 0;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background: var(--primary-color);
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-content {
+        position: relative;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .timeline-content::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 1rem;
+        height: 1rem;
+        background: var(--primary-color);
+        border-radius: 50%;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: 2rem;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::before {
+        left: -2.5rem;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-right: 2rem;
+        text-align: right;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::before {
+        right: -2.5rem;
+    }
+</style>
+{% endblock %} 

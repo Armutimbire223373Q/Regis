@@ -1,73 +1,93 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from django.db.models import Avg, Count
-from django.utils import timezone
-from datetime import timedelta
-from .forms import CustomUserCreationForm, ProfileForm, UserRegistrationForm, AuthenticationForm
-from students.models import Grade, Attendance
-from core.models import Event, NewsItem
-from teachers.models import Class, Schedule, Assignment, TeacherProfile, Announcement
-from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, UpdateView, TemplateView
 
-User = get_user_model()
+from .forms import (
+    CustomUserCreationForm, CustomUserChangeForm,
+    UserProfileForm, EmailVerificationForm
+)
+from .models import CustomUser
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Registration successful! You can now log in.')
-            return redirect('accounts:login')
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'accounts/register.html', {'form': form})
 
-def login_view(request):
-    """Handle user login."""
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('accounts:dashboard')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form': form})
-
-def logout_view(request):
-    """Handle user logout."""
-    logout(request)
-    return redirect('accounts:login')
-
-@login_required
-def dashboard(request):
-    context = {
-        'recent_news': NewsItem.objects.filter(is_published=True).order_by('-date_posted')[:5],
-        'upcoming_events': Event.objects.filter(end_date__gte=timezone.now()).order_by('start_date')[:5],
-    }
+class SignUpView(CreateView):
+    """View for user registration."""
     
-    if hasattr(request.user, 'teacherprofile'):
-        context['announcements'] = Announcement.objects.filter(
-            teacher=request.user.teacherprofile
-        ).order_by('-created_at')[:5]
-    
-    if hasattr(request.user, 'studentprofile'):
-        context['announcements'] = Announcement.objects.filter(
-            class_group=request.user.studentprofile.class_group
-        ).order_by('-created_at')[:5]
-    
-    return render(request, 'accounts/dashboard.html', context)
+    form_class = CustomUserCreationForm
+    template_name = 'accounts/signup.html'
+    success_url = reverse_lazy('accounts:email_verification')
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user)
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        messages.success(self.request, _('Account created successfully!'))
+        return response
+
+
+class CustomLoginView(LoginView):
+    """Custom login view."""
+    
+    template_name = 'accounts/login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('accounts:profile')
+
+    def form_invalid(self, form):
+        messages.error(self.request, _('Invalid email or password.'))
+        return super().form_invalid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class ProfileView(UpdateView):
+    """View for user profile management."""
+    
+    model = CustomUser
+    form_class = UserProfileForm
+    template_name = 'accounts/profile.html'
+    success_url = reverse_lazy('accounts:profile')
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        messages.success(self.request, _('Profile updated successfully!'))
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class EmailVerificationView(TemplateView):
+    """View for email verification."""
+    
+    template_name = 'accounts/email_verification.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = EmailVerificationForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = EmailVerificationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Your profile has been updated successfully!')
+            code = form.cleaned_data['code']
+            # Add verification logic here
+            user = request.user
+            user.is_email_verified = True
+            user.save()
+            messages.success(request, _('Email verified successfully!'))
             return redirect('accounts:profile')
-    else:
-        form = ProfileForm(instance=request.user)
-    return render(request, 'accounts/profile.html', {'form': form})
+        return self.render_to_response({'form': form})
+
+
+@login_required
+def logout_view(request):
+    """View for user logout."""
+    logout(request)
+    messages.info(request, _('You have been logged out.'))
+    return redirect('accounts:login')

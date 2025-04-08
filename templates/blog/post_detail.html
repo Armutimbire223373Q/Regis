@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Regisbridge Private School Blog{% endblock %}
+
+{% block extra_head %}
+    <meta name="description" content="{{ post.excerpt|default:post.content|truncatewords:30 }}">
+    <meta name="keywords" content="{% for category in post.categories.all %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:description" content="{{ post.excerpt|default:post.content|truncatewords:30 }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if post.featured_image %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.featured_image.url }}">
+    {% else %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/blog-placeholder.jpg' %}">
+    {% endif %}
+    <meta property="article:published_time" content="{{ post.publish|date:'c' }}">
+    <meta property="article:modified_time" content="{{ post.updated|date:'c' }}">
+    <meta property="article:author" content="{{ post.author.get_full_name|default:post.author.username }}">
+    {% for category in post.categories.all %}
+    <meta property="article:tag" content="{{ category.name }}">
+    {% endfor %}
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ post.title }}">
+    <meta name="twitter:description" content="{{ post.excerpt|default:post.content|truncatewords:30 }}">
+    {% if post.featured_image %}
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.featured_image.url }}">
+    {% else %}
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/blog-placeholder.jpg' %}">
+    {% endif %}
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ post.title }}",
+        "description": "{{ post.excerpt|default:post.content|truncatewords:30 }}",
+        "image": "{% if post.featured_image %}{{ request.scheme }}://{{ request.get_host }}{{ post.featured_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/blog-placeholder.jpg' %}{% endif %}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ post.author.get_full_name|default:post.author.username }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Regisbridge Private School",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.jpg' %}"
+            }
+        },
+        "datePublished": "{{ post.publish|date:'c' }}",
+        "dateModified": "{{ post.updated|date:'c' }}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ request.build_absolute_uri }}"
+        }
+    }
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <article class="blog-post">
+                <header class="mb-4">
+                    <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                    <div class="text-muted fst-italic mb-2">
+                        Posted on {{ post.publish|date:"F d, Y" }} by {{ post.author.get_full_name|default:post.author.username }}
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="me-3"><i class="fas fa-eye"></i> {{ post.views }} views</span>
+                        <span class="me-3"><i class="fas fa-clock"></i> {{ post.read_time }} min read</span>
+                        <div class="social-share">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="me-2">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank" class="me-2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ post.title }}" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% if post.featured_image %}
+                    <img class="img-fluid rounded" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    {% else %}
+                    <img class="img-fluid rounded" src="{% static 'images/blog-placeholder.jpg' %}" alt="{{ post.title }}">
+                    {% endif %}
+                </header>
+                
+                <section class="mb-5">
+                    {{ post.content|safe }}
+                </section>
+                
+                <section class="mb-5">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Categories</h5>
+                            {% for category in post.categories.all %}
+                            <a href="{{ category.get_absolute_url }}" class="badge bg-primary text-decoration-none me-2">
+                                {{ category.name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mb-5">
+                    <h3 class="fw-bolder mb-4">Comments ({{ comments.count }})</h3>
+                    {% for comment in comments %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">{{ comment.name }}</h5>
+                                <small class="text-muted">{{ comment.created|date:"F d, Y" }}</small>
+                            </div>
+                            <p class="card-text">{{ comment.body }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No comments yet. Be the first to comment!</p>
+                    {% endfor %}
+                    
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Leave a Comment</h5>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ comment_form.as_p }}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">About Author</div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-shrink-0">
+                            <img src="{% static 'images/logo.jpg' %}" class="rounded-circle" width="50" height="50" alt="Author">
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">{{ post.author.get_full_name|default:post.author.username }}</h6>
+                            <small class="text-muted">Author</small>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ post.author.profile.bio|default:"No bio available" }}</p>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">Categories</div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for category in categories %}
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">Newsletter</div>
+                <div class="card-body">
+                    <p>Subscribe to our newsletter to receive updates on new posts and school events.</p>
+                    <form method="post" action="{% url 'blog:newsletter_subscribe' %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Your email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            {% if similar_posts %}
+            <div class="card mb-4">
+                <div class="card-header">Related Posts</div>
+                <div class="card-body">
+                    {% for post in similar_posts %}
+                    <div class="mb-3">
+                        {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" class="img-fluid rounded mb-2" alt="{{ post.title }}">
+                        {% else %}
+                        <img src="{% static 'images/blog-placeholder.jpg' %}" class="img-fluid rounded mb-2" alt="{{ post.title }}">
+                        {% endif %}
+                        <h6 class="mb-1">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h6>
+                        <small class="text-muted">{{ post.publish|date:"F d, Y" }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="card mb-4">
+                <div class="card-header">Upcoming Events</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <img src="{% static 'images/event1.jpg' %}" class="img-fluid rounded mb-2" alt="Event 1">
+                            <h6>Annual Sports Day</h6>
+                            <small class="text-muted">April 15, 2024</small>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <img src="{% static 'images/event2.jpg' %}" class="img-fluid rounded mb-2" alt="Event 2">
+                            <h6>Science Fair</h6>
+                            <small class="text-muted">April 20, 2024</small>
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="{% static 'images/event3.jpg' %}" class="img-fluid rounded mb-2" alt="Event 3">
+                            <h6>Parent-Teacher Meeting</h6>
+                            <small class="text-muted">April 25, 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-meta {
+        font-size: 0.9rem;
+    }
+    
+    .post-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .post-content p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1.5rem 0;
+    }
+    
+    .post-content h2, .post-content h3, .post-content h4 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .comment {
+        transition: transform 0.3s ease;
+    }
+    
+    .comment:hover {
+        transform: translateY(-3px);
+    }
+</style>
+{% endblock %} 

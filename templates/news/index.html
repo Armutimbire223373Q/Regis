@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}News & Events - Regisbridge Private School{% endblock %}
+
+{% block content %}
+<section class="page-header bg-light py-5">
+    <div class="container">
+        <h1 class="section-title text-center">News & Events</h1>
+        <p class="lead text-center text-muted">Stay updated with the latest happenings at Regisbridge</p>
+    </div>
+</section>
+
+<section class="news-content py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- News Item 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="{% static 'images/event1.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="news-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 15, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Annual Sports Day</h3>
+                        <p class="text-muted">Join us for our annual sports day celebration featuring various athletic events and competitions.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="{% static 'images/event2.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="news-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 20, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Science Fair</h3>
+                        <p class="text-muted">Discover innovative projects at our annual science fair showcasing student creativity.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="{% static 'images/event3.jpg' %}" class="card-img-top" alt="School Event">
+                    <div class="card-body">
+                        <div class="news-date mb-2 text-primary">
+                            <i class="far fa-calendar-alt me-2"></i>April 25, 2024
+                        </div>
+                        <h3 class="h5 mb-3">Parent-Teacher Meeting</h3>
+                        <p class="text-muted">Schedule meetings with teachers to discuss your child's academic progress.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Stay Connected with Regisbridge</h2>
+                <p class="lead mb-4">Join our community and be part of our exciting events and activities</p>
+                <a href="{% url 'admissions:index' %}" class="btn btn-primary btn-lg">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
